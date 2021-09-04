@@ -6,6 +6,7 @@ import {
 	DonutLarge,
 	Chat,
 	MoreVert,
+	Search,
 } from '@material-ui/icons';
 
 export default () => {
@@ -27,7 +28,12 @@ export default () => {
 						</div>
 					</div>
 				</header>
-				<section className="search"></section>
+				<section className="search">
+					<div className="search--input">
+						<Search style={{ color: '#919191', fontSize: 'small' }} />
+						<input type="search" placeholder="Procurar ou começar uma nova conversa" />
+					</div>
+				</section>
 				<section className="chatlist"></section>
 			</section>
 

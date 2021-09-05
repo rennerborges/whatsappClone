@@ -10,10 +10,11 @@ import {
 } from '@material-ui/icons';
 
 import ChatListItem from './components/ChatListItem';
+import ChatIntro from './components/ChatIntro';
 
 export default () => {
 
-	const [chatlist, setChatlist] = useState([{}, {}, {}, {}]);
+	const [chatlist, setChatlist] = useState([{}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}]);
 
 	return (
 		<section className="app-window">
@@ -52,7 +53,7 @@ export default () => {
 			</section>
 
 			<section className="contentarea">
-
+				<ChatIntro />
 			</section>
 		</section>
 	)

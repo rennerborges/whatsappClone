@@ -89,4 +89,6 @@ header {
 	background-color: rgba(0, 0, 0, 0.2);
 }
 
-.contentarea {}
+.contentarea {
+	flex: 1;
+}

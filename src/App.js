@@ -11,10 +11,22 @@ import {
 
 import ChatListItem from './components/ChatListItem';
 import ChatIntro from './components/ChatIntro';
+import ChatWindow from './components/ChatWindow';
 
 export default () => {
 
-	const [chatlist, setChatlist] = useState([{}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}]);
+	const [chatlist, setChatlist] = useState([
+		{ chatId: 1, user: 'Gisele Santos', image: 'https://www.w3schools.com/howto/img_avatar2.png' },
+		{ chatId: 2, user: 'Livia Cristina', image: 'https://www.w3schools.com/howto/img_avatar2.png' },
+		{ chatId: 3, user: 'Washington Borges', image: 'https://www.w3schools.com/howto/img_avatar2.png' },
+		{ chatId: 4, user: 'Luiz Alexandre', image: 'https://www.w3schools.com/howto/img_avatar2.png' },
+		{ chatId: 5, user: 'Mateus Augusto', image: 'https://www.w3schools.com/howto/img_avatar2.png' },
+		{ chatId: 6, user: 'Thander Augusto', image: 'https://www.w3schools.com/howto/img_avatar2.png' },
+
+
+
+	]);
+	const [activeChat, setActiveChat] = useState({});
 
 	return (
 		<section className="app-window">
@@ -47,13 +59,22 @@ export default () => {
 					{chatlist.map((chat, key) => (
 						<ChatListItem
 							key={key}
+							isActive={activeChat.chatId === chat.chatId}
+							user={chat.user}
+							image={chat.image}
+							onClick={() => setActiveChat(chat)}
 						/>
 					))}
 				</section>
 			</section>
 
 			<section className="contentarea">
-				<ChatIntro />
+				{activeChat.chatId &&
+					<ChatWindow />
+				}
+				{!activeChat.chatId &&
+					<ChatIntro />
+				}
 			</section>
 		</section>
 	)

@@ -2,13 +2,19 @@
 import React from 'react';
 import './index.css';
 
-export default () => {
+import { SetClassName } from '../../util/classes';
+
+export default ({ user, image, onClick, isActive }) => {
+    console.log(image)
     return (
-        <article className="chatListItem">
-            <img className="chatListItem--avatar" src="https://www.w3schools.com/howto/img_avatar2.png" alt="" />
+        <article
+            className={SetClassName('chatListItem', 'active', isActive)}
+            onClick={onClick}
+        >
+            <img className="chatListItem--avatar" src={image} alt="" />
             <div className="chatListItem--lines">
                 <div className="chatListItem--line">
-                    <div className="chatListItem--name">Renner Borges</div>
+                    <div className="chatListItem--name">{user}</div>
                     <div className="chatListItem--date">19:00</div>
                 </div>
                 <div className="chatListItem--line">

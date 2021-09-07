@@ -1,0 +1,26 @@
+.cronometro {
+    display: flex;
+    align-items: center;
+    margin: 0px 15px;
+}
+
+.cronometro--btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    overflow: hidden;
+    transition: all ease 0.3s;
+    color: rgb(145, 145, 145);
+}
+
+.cronometro--btn.greenHover:hover {
+    color: #44d986 !important
+}
+
+.cronometro--btn.redHover:hover {
+    color: #e76966 !important;
+}

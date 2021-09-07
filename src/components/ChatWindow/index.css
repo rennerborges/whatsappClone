@@ -51,6 +51,15 @@
     cursor: pointer;
     overflow: hidden;
     transition: all ease 0.3s;
+    color: rgb(145, 145, 145);
+}
+
+.chatWindow--btn.greenHover:hover {
+    color: #44d986 !important
+}
+
+.chatWindow--btn.redHover:hover {
+    color: #e76966 !important;
 }
 
 .chatWindow--body {
@@ -88,6 +97,7 @@
 
 .chatWindow--pos {
     display: flex;
+    align-items: center;
     margin: 0px 15px;
 }
 

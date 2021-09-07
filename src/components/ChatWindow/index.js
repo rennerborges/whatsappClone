@@ -10,10 +10,15 @@ import {
     Close,
     Send,
     Mic,
+    CheckCircleOutline,
+    HighlightOff,
 } from '@material-ui/icons';
 
 import EmojiPicker from 'emoji-picker-react';
 import { CapitalizeFirstLetter } from '../../util/text';
+
+import Cronometro from '../../components/Cronometro';
+
 export default () => {
 
     let recognition = null;
@@ -45,7 +50,6 @@ export default () => {
         }
 
         recognition.onstart = () => {
-            console.log('start');
             setListening(true);
         }
 
@@ -54,12 +58,23 @@ export default () => {
         }
 
         recognition.onresult = (event) => {
-            const valor = event.results[0][0].transcript;
+            const valor = window.isAborted ? '' : event.results[0][0].transcript;
             setText(CapitalizeFirstLetter(valor));
         }
-
+        window.isAborted = false;
         recognition.start();
     }
+
+    const onConcludedListener = () => {
+        return recognition.stop();
+    };
+
+    const onStopListener = () => {
+        window.isAborted = true;
+        recognition.stop();
+        return setListening(false);
+    };
+
 
     const handleSendClick = () => { }
 
@@ -130,17 +145,29 @@ export default () => {
                 </div>
 
                 <div className="chatWindow--pos">
-                    {text &&
-                        <div onClick={handleSendClick} className="chatWindow--btn">
-                            <Send style={{ color: '#919191' }} />
-                        </div>
+                    {!listening &&
+                        <React.Fragment>
+                            {text &&
+                                <div onClick={handleSendClick} className="chatWindow--btn">
+                                    <Send style={{ color: '#919191' }} />
+                                </div>
+                            }
+                            {!text &&
+                                <div onClick={handleMicClick} className="chatWindow--btn">
+                                    <Mic style={{ color: listening ? '#126ECE' : '#919191' }} />
+                                </div>
+                            }
+                        </React.Fragment>
                     }
-                    {!text &&
-                        <div onClick={handleMicClick} className="chatWindow--btn">
-                            <Mic style={{ color: listening ? '#126ECE' : '#919191' }} />
-                        </div>
+                    {listening &&
+                        <Cronometro
+                            onStop={onStopListener}
+                            onConcluded={onConcludedListener}
+                        />
                     }
                 </div>
+
+
 
             </footer>
 

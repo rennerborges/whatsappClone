@@ -5,7 +5,6 @@ import './index.css';
 import { SetClassName } from '../../util/classes';
 
 export default ({ user, image, onClick, isActive }) => {
-    console.log(image)
     return (
         <article
             className={SetClassName('chatListItem', 'active', isActive)}

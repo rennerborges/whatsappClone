@@ -2,6 +2,10 @@
     display: flex;
     flex-direction: column;
     height: 100%;
+    background: linear-gradient(rgba(229, 221, 213, 0.9), rgba(229, 221, 213, 0.9)), url('https://cdn.discordapp.com/attachments/690204704407552010/884796305732431942/bg-chat-tile-light_04fcacde539c58cca6745483d4858c52.png');
+    background-color: #E5DDD5;
+    background-size: contain;
+    background-position: center;
 }
 
 .chatWindow--header {
@@ -10,6 +14,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    background-color: #ededed;
 }
 
 .chatWindow--headerinfo {
@@ -44,13 +49,60 @@
     justify-content: center;
     align-items: center;
     cursor: pointer;
+    overflow: hidden;
+    transition: all ease 0.3s;
 }
 
 .chatWindow--body {
     flex: 1;
     overflow-y: auto;
-    background: linear-gradient(rgba(229, 221, 213, 0.9), rgba(229, 221, 213, 0.9)), url('https://cdn.discordapp.com/attachments/690204704407552010/884796305732431942/bg-chat-tile-light_04fcacde539c58cca6745483d4858c52.png');
-    background-color: #E5DDD5;
-    background-size: contain;
-    background-position: center;
+}
+
+.chatWindow--footer {
+    height: 62px;
+    display: flex;
+    align-items: center;
+    background-color: #ededed;
+}
+
+.chatWindow--pre {
+    display: flex;
+    margin: 0px 15px;
+}
+
+.chatWindow--inputarea {
+    flex: 1;
+}
+
+.chatWindow--input {
+    width: 100%;
+    height: 40px;
+    border: 0;
+    outline: 0;
+    background-color: #FFFFFF;
+    border-radius: 20px;
+    font-size: 15px;
+    color: #4A4A4A;
+    padding-left: 15px;
+}
+
+.chatWindow--pos {
+    display: flex;
+    margin: 0px 15px;
+}
+
+.chatWindow--emojiarea {
+    height: 300px;
+    overflow-y: hidden;
+    transition: all ease 0.3s;
+    background-color: #ededed;
+}
+
+.chatWindow--emojiarea>.emoji-picker-react {
+    width: 100%;
+    background: none;
+}
+
+.chatWindow--emojiarea>.emoji-picker-react .emoji-group::before {
+    background: none;
 }

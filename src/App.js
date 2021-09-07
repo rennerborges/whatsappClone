@@ -12,6 +12,7 @@ import {
 import ChatListItem from './components/ChatListItem';
 import ChatIntro from './components/ChatIntro';
 import ChatWindow from './components/ChatWindow';
+import NewChat from './components/NewChat';
 
 export default () => {
 
@@ -32,19 +33,29 @@ export default () => {
 		avatar: 'https://www.w3schools.com/howto/img_avatar2.png',
 		name: 'Renner Borges'
 	});
+	const [showNewChat, setShowNewChat] = useState(false);
+
+	const handleNewChat = () => {
+		return setShowNewChat(true);
+	}
 
 	return (
 		<section className="app-window">
 
 			<section className="sidebar">
-
+				<NewChat
+					chatlist={chatlist}
+					user={user}
+					show={showNewChat}
+					setShow={setShowNewChat}
+				/>
 				<header>
 					<img className="header--avatar" src={user.avatar} alt="" />
 					<div className="header-buttons">
 						<div className="header--btn">
 							<DonutLarge style={{ color: '#919191' }} />
 						</div>
-						<div className="header--btn">
+						<div className="header--btn" onClick={handleNewChat}>
 							<Chat style={{ color: '#919191' }} />
 						</div>
 						<div className="header--btn">

@@ -45,3 +45,12 @@
     align-items: center;
     cursor: pointer;
 }
+
+.chatWindow--body {
+    flex: 1;
+    overflow-y: auto;
+    background: linear-gradient(rgba(229, 221, 213, 0.9), rgba(229, 221, 213, 0.9)), url('https://cdn.discordapp.com/attachments/690204704407552010/884796305732431942/bg-chat-tile-light_04fcacde539c58cca6745483d4858c52.png');
+    background-color: #E5DDD5;
+    background-size: contain;
+    background-position: center;
+}

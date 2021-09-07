@@ -71,7 +71,10 @@ export default ({ onStop, onConcluded }) => {
             >
                 <HighlightOff />
             </div>
-            <div>{formatterTime(minute)}:{formatterTime(second)}</div>
+            <div className="cronometro--time">
+                <span className="cronometro--circle"></span>
+                <span>{formatterTime(minute)}: {formatterTime(second)}</span>
+            </div>
             <div
                 className="cronometro--btn greenHover"
                 onClick={onConcluded}

@@ -17,10 +17,44 @@
     color: rgb(145, 145, 145);
 }
 
-.cronometro--btn.greenHover:hover {
+.cronometro--btn.greenHover {
     color: #44d986 !important
 }
 
-.cronometro--btn.redHover:hover {
+.cronometro--btn.greenHover:hover {
+    background-color: rgba(68, 217, 134, 0.15);
+}
+
+.cronometro--btn.redHover {
     color: #e76966 !important;
+}
+
+.cronometro--btn.redHover:hover {
+    background-color: rgba(231, 105, 102, 0.15);
+}
+
+.cronometro--time {
+    display: flex;
+    align-items: center;
+    margin: 0px 5px;
+}
+
+.cronometro--circle {
+    width: 10px;
+    height: 10px;
+    display: inline-block;
+    border-radius: 50%;
+    background-color: #e76966;
+    margin: 0px 5px;
+    animation: handleChangeOpacity ease-in-out 1.2s infinite;
+}
+
+@keyframes handleChangeOpacity {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
 }

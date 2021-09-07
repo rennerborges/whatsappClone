@@ -10,8 +10,6 @@ import {
     Close,
     Send,
     Mic,
-    CheckCircleOutline,
-    HighlightOff,
 } from '@material-ui/icons';
 
 import EmojiPicker from 'emoji-picker-react';

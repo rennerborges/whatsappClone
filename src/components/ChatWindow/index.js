@@ -1,5 +1,5 @@
 /* eslint-disable import/no-anonymous-default-export */
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import './index.css';
 
 import {
@@ -16,8 +16,11 @@ import EmojiPicker from 'emoji-picker-react';
 import { CapitalizeFirstLetter } from '../../util/text';
 
 import Cronometro from '../../components/Cronometro';
+import MessageItem from '../../components/MessageItem';
 
-export default () => {
+export default ({ user }) => {
+
+    const body = useRef();
 
     let recognition = null;
     const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition || window.mozSpeechRec;
@@ -29,6 +32,196 @@ export default () => {
     const [text, setText] = useState('');
     const [emojiOpen, setEmojiOpen] = useState(false);
     const [listening, setListening] = useState(false);
+    const [list, setList] = useState([
+        {
+            author: 123,
+            body: 'BLA BLA BLA'
+        },
+        {
+            author: 123,
+            body: 'BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA '
+        },
+        {
+            author: 1234,
+            body: 'BLA BLA BLA'
+        },
+        {
+            author: 123,
+            body: 'BLA BLA BLA'
+        },
+        {
+            author: 123,
+            body: 'BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA '
+        },
+        {
+            author: 1234,
+            body: 'BLA BLA BLA'
+        },
+        {
+            author: 123,
+            body: 'BLA BLA BLA'
+        },
+        {
+            author: 123,
+            body: 'BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA '
+        },
+        {
+            author: 1234,
+            body: 'BLA BLA BLA'
+        },
+        {
+            author: 123,
+            body: 'BLA BLA BLA'
+        },
+        {
+            author: 123,
+            body: 'BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA '
+        },
+        {
+            author: 1234,
+            body: 'BLA BLA BLA'
+        },
+        {
+            author: 123,
+            body: 'BLA BLA BLA'
+        },
+        {
+            author: 123,
+            body: 'BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA '
+        },
+        {
+            author: 1234,
+            body: 'BLA BLA BLA'
+        },
+        {
+            author: 123,
+            body: 'BLA BLA BLA'
+        },
+        {
+            author: 123,
+            body: 'BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA '
+        },
+        {
+            author: 1234,
+            body: 'BLA BLA BLA'
+        },
+        {
+            author: 123,
+            body: 'BLA BLA BLA'
+        },
+        {
+            author: 123,
+            body: 'BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA '
+        },
+        {
+            author: 1234,
+            body: 'BLA BLA BLA'
+        },
+        {
+            author: 123,
+            body: 'BLA BLA BLA'
+        },
+        {
+            author: 123,
+            body: 'BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA '
+        },
+        {
+            author: 1234,
+            body: 'BLA BLA BLA'
+        },
+        {
+            author: 123,
+            body: 'BLA BLA BLA'
+        },
+        {
+            author: 123,
+            body: 'BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA '
+        },
+        {
+            author: 1234,
+            body: 'BLA BLA BLA'
+        },
+        {
+            author: 123,
+            body: 'BLA BLA BLA'
+        },
+        {
+            author: 123,
+            body: 'BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA '
+        },
+        {
+            author: 1234,
+            body: 'BLA BLA BLA'
+        },
+        {
+            author: 123,
+            body: 'BLA BLA BLA'
+        },
+        {
+            author: 123,
+            body: 'BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA '
+        },
+        {
+            author: 1234,
+            body: 'BLA BLA BLA'
+        },
+        {
+            author: 123,
+            body: 'BLA BLA BLA'
+        },
+        {
+            author: 123,
+            body: 'BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA '
+        },
+        {
+            author: 1234,
+            body: 'BLA BLA BLA'
+        },
+        {
+            author: 123,
+            body: 'BLA BLA BLA'
+        },
+        {
+            author: 123,
+            body: 'BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA '
+        },
+        {
+            author: 1234,
+            body: 'BLA BLA BLA'
+        },
+        {
+            author: 123,
+            body: 'BLA BLA BLA'
+        },
+        {
+            author: 123,
+            body: 'BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA '
+        },
+        {
+            author: 1234,
+            body: 'BLA BLA BLA'
+        },
+        {
+            author: 123,
+            body: 'BLA BLA BLA'
+        },
+        {
+            author: 123,
+            body: 'BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA '
+        },
+        {
+            author: 1234,
+            body: 'BLA BLA BLA'
+        }
+    ]);
+
+    useEffect(() => {
+        const element = body.current;
+
+        if (element.scrollHeight > element.offsetHeight) {
+            element.scrollTop = element.scrollHeight - element.offsetHeight;
+        }
+    }, [list])
 
     const handleEmojiClick = (event, emojiObject) => {
         return setText(prev => prev + emojiObject.emoji);
@@ -99,8 +292,14 @@ export default () => {
                 </div>
             </header>
 
-            <div className="chatWindow--body">
-
+            <div className="chatWindow--body" ref={body}>
+                {list.map((item, key) => (
+                    <MessageItem
+                        key={key}
+                        data={item}
+                        user={user}
+                    />
+                ))}
             </div>
 
             <div

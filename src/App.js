@@ -27,6 +27,11 @@ export default () => {
 
 	]);
 	const [activeChat, setActiveChat] = useState({});
+	const [user, setUser] = useState({
+		id: 1234,
+		avatar: 'https://www.w3schools.com/howto/img_avatar2.png',
+		name: 'Renner Borges'
+	});
 
 	return (
 		<section className="app-window">
@@ -34,7 +39,7 @@ export default () => {
 			<section className="sidebar">
 
 				<header>
-					<img className="header--avatar" src="https://www.w3schools.com/howto/img_avatar2.png" alt="" />
+					<img className="header--avatar" src={user.avatar} alt="" />
 					<div className="header-buttons">
 						<div className="header--btn">
 							<DonutLarge style={{ color: '#919191' }} />
@@ -70,7 +75,9 @@ export default () => {
 
 			<section className="contentarea">
 				{activeChat.chatId &&
-					<ChatWindow />
+					<ChatWindow
+						user={user}
+					/>
 				}
 				{!activeChat.chatId &&
 					<ChatIntro />

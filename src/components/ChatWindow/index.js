@@ -13,11 +13,19 @@ import {
 } from '@material-ui/icons';
 
 import EmojiPicker from 'emoji-picker-react';
-
+import { CapitalizeFirstLetter } from '../../util/text';
 export default () => {
+
+    let recognition = null;
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition || window.mozSpeechRec;
+
+    if (SpeechRecognition) {
+        recognition = new SpeechRecognition();
+    }
 
     const [text, setText] = useState('');
     const [emojiOpen, setEmojiOpen] = useState(false);
+    const [listening, setListening] = useState(false);
 
     const handleEmojiClick = (event, emojiObject) => {
         return setText(prev => prev + emojiObject.emoji);
@@ -27,7 +35,31 @@ export default () => {
         setEmojiOpen(prev => !prev);
     }
 
-    const handleMicClick = () => { }
+    const handleMicClick = () => {
+        if (!recognition) {
+            return;
+        }
+
+        if (listening) {
+            return recognition.stop();
+        }
+
+        recognition.onstart = () => {
+            console.log('start');
+            setListening(true);
+        }
+
+        recognition.onend = () => {
+            setListening(false);
+        }
+
+        recognition.onresult = (event) => {
+            const valor = event.results[0][0].transcript;
+            setText(CapitalizeFirstLetter(valor));
+        }
+
+        recognition.start();
+    }
 
     const handleSendClick = () => { }
 
@@ -99,13 +131,13 @@ export default () => {
 
                 <div className="chatWindow--pos">
                     {text &&
-                        <div onClick={handleMicClick} className="chatWindow--btn">
+                        <div onClick={handleSendClick} className="chatWindow--btn">
                             <Send style={{ color: '#919191' }} />
                         </div>
                     }
                     {!text &&
-                        <div onClick={handleSendClick} className="chatWindow--btn">
-                            <Mic style={{ color: '#919191' }} />
+                        <div onClick={handleMicClick} className="chatWindow--btn">
+                            <Mic style={{ color: listening ? '#126ECE' : '#919191' }} />
                         </div>
                     }
                 </div>
